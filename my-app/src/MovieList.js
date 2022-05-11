@@ -32,17 +32,17 @@ export default function MovieList() {
     function addMovie(event){
         if (titleRef.current.value !== "" && gradeRef.current.value > 0){
             const newId = movies.length > 0 ? movies[movies.length - 1].id + 1: 1;
-            setMovies(movies => ([...movies, {
+            setMovies([...movies, {
                 id: newId,
                 title: titleRef.current.value,
                 grade: gradeRef.current.value,
-            }]));
-
+            }])
         } else {
             alert("Du måste lägga till både titel och betyg för att lägga till en film!")
         }
         titleRef.current.value = "";
         gradeRef.current.value = "";
+    
     } 
 
     function deleteMovie(id) {
@@ -55,14 +55,14 @@ export default function MovieList() {
 
     function handleSortAlpha() {
        const sorted = [...movies].sort((a,b) => {
-           return (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase())
+           return (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase())? 1: -1
        })
        setMovies(sorted)
     }
 
     function handleSortNumeric() {
         const sortedNr = [...movies].sort((a, b) => {
-            return (a.grade < b.grade) 
+            return (a.grade < b.grade)? 1: -1
         })
         setMovies(sortedNr)
     };
