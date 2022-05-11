@@ -48,9 +48,6 @@ export default function MovieList() {
     function deleteMovie(id) {
         setMovies(movies.filter((movie) => movie.id !== id));
     }
-    useEffect(() => {
-        setMovies(movies)
-      }, [])
   
 
     function handleSortAlpha() {
@@ -66,11 +63,6 @@ export default function MovieList() {
         })
         setMovies(sortedNr)
     };
-    
-    //} else{
-          //movies.sort((a, b) => (a.grade < b.grade) ? 1 : -1)
-         // return movies.map(movie => <Movie key={movie.id} movie={movie} deleteMovie={deleteMovie}/>)
-       //} 
     
     
     
