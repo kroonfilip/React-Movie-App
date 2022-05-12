@@ -1,8 +1,11 @@
-import React, {useState, useRef, useEffect} from 'react';
-
+import React, {useState, useRef} from 'react';
 import Movie from './Movie';
 
+
+
+
 export default function MovieList() {
+    
     const [movies, setMovies] = useState([{
         id: 1,
         title: "AStar Wars",
@@ -28,8 +31,9 @@ export default function MovieList() {
     
     const titleRef = useRef();
     const gradeRef = useRef();
-
+    
     function addMovie(event){
+        event.preventDefault()
         if (titleRef.current.value !== "" && gradeRef.current.value > 0){
             const newId = movies.length > 0 ? movies[movies.length - 1].id + 1: 1;
             setMovies([...movies, {
@@ -42,17 +46,15 @@ export default function MovieList() {
         }
         titleRef.current.value = "";
         gradeRef.current.value = "";
+        
     
     } 
 
     function deleteMovie(id) {
         setMovies(movies.filter((movie) => movie.id !== id));
     }
-    useEffect(() => {
-        setMovies(movies)
-      }, [])
-  
-
+    
+    
     function handleSortAlpha() {
        const sorted = [...movies].sort((a,b) => {
            return (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase())? 1: -1
@@ -67,10 +69,6 @@ export default function MovieList() {
         setMovies(sortedNr)
     };
     
-    //} else{
-          //movies.sort((a, b) => (a.grade < b.grade) ? 1 : -1)
-         // return movies.map(movie => <Movie key={movie.id} movie={movie} deleteMovie={deleteMovie}/>)
-       //} 
     
     
     
@@ -79,10 +77,11 @@ export default function MovieList() {
     
    })
     
-    
+   
+
     return (
         <div className="row container-fluid">
-            <form action ="#"onSubmit = {addMovie}>
+            <form action ="#"  onSubmit= {addMovie}>
             <label htmlFor="title">Titel:</label>
             <input id="title" className="form-control" ref={titleRef} />
             <div className="form-group">
@@ -97,7 +96,7 @@ export default function MovieList() {
                         </select>
                     </div>
                     <div className="form-group mt-2">
-                        <button type ="submit" value ="Submit" id="save-movie" className="btn btn-success">
+                        <button type="submit" value ="Submit" id="save-movie" className="btn btn-success">
                             Spara film
                         </button>
                             
@@ -110,11 +109,16 @@ export default function MovieList() {
                    {moviesComponents}
                     
             </ul>
+            
             </form>
+            
+               
+            
             
             <button id="OrderByAlpha" onClick= {handleSortAlpha}className="btn btn-primary">Alfabetisk ordning</button>
             <button id="OrderByGrade" onClick= {handleSortNumeric}className="btn btn-primary">Betygsordning</button>
         </div>
+       
     )
     
     
