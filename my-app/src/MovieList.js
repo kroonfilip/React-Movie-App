@@ -5,28 +5,7 @@ import Movie from './Movie';
 
 
 export default function MovieList() {
-    
-    const [movies, setMovies] = useState([{
-        id: 1,
-        title: "AStar Wars",
-        grade: 4
-    },{
-        id: 2,
-        title: "Batman",
-        grade: 5
-    },{
-        id: 3,
-        title: "Spiderman",
-        grade: 2
-    },{
-        id: 4,
-        title: "CSuperman",
-        grade: 5
-    },{
-        id: 5,
-        title: "HSeven",
-        grade: 3
-    }]);
+    const [movies, setMovies] = useState([]);
 
     
     const titleRef = useRef();
@@ -53,8 +32,8 @@ export default function MovieList() {
     function deleteMovie(id) {
         setMovies(movies.filter((movie) => movie.id !== id));
     }
-    
-    
+  
+
     function handleSortAlpha() {
        const sorted = [...movies].sort((a,b) => {
            return (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase())? 1: -1
@@ -71,7 +50,6 @@ export default function MovieList() {
     
     
     
-    
     let moviesComponents = movies.map(movie => {
     return <Movie key={movie.id} movie={movie} deleteMovie={deleteMovie}/>;
     
@@ -81,7 +59,7 @@ export default function MovieList() {
 
     return (
         <div className="row container-fluid">
-            <form action ="#"  onSubmit= {addMovie}>
+            <form action ="#" onSubmit = {addMovie}>
             <label htmlFor="title">Titel:</label>
             <input id="title" className="form-control" ref={titleRef} />
             <div className="form-group">
