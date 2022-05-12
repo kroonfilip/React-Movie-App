@@ -3,33 +3,14 @@ import React, {useState, useRef} from 'react';
 import Movie from './Movie';
 
 export default function MovieList() {
-    const [movies, setMovies] = useState([{
-        id: 1,
-        title: "AStar Wars",
-        grade: 4
-    },{
-        id: 2,
-        title: "Batman",
-        grade: 5
-    },{
-        id: 3,
-        title: "Spiderman",
-        grade: 2
-    },{
-        id: 4,
-        title: "CSuperman",
-        grade: 5
-    },{
-        id: 5,
-        title: "HSeven",
-        grade: 3
-    }]);
+    const [movies, setMovies] = useState([]);
 
     
     const titleRef = useRef();
     const gradeRef = useRef();
 
     function addMovie(event){
+        event.preventDefault()
         if (titleRef.current.value !== "" && gradeRef.current.value > 0){
             const newId = movies.length > 0 ? movies[movies.length - 1].id + 1: 1;
             setMovies([...movies, {
