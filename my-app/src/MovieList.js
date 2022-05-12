@@ -1,13 +1,9 @@
 import React, {useState, useRef} from 'react';
 import Movie from './Movie';
 
-
-
-
 export default function MovieList() {
     const [movies, setMovies] = useState([]);
 
-    
     const titleRef = useRef();
     const gradeRef = useRef();
     
@@ -24,16 +20,13 @@ export default function MovieList() {
             alert("Du måste lägga till både titel och betyg för att lägga till en film!")
         }
         titleRef.current.value = "";
-        gradeRef.current.value = "";
-        
-    
+        gradeRef.current.value = "";   
     } 
 
     function deleteMovie(id) {
         setMovies(movies.filter((movie) => movie.id !== id));
     }
   
-
     function handleSortAlpha() {
        const sorted = [...movies].sort((a,b) => {
            return (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase())? 1: -1
@@ -48,15 +41,11 @@ export default function MovieList() {
         setMovies(sortedNr)
     };
     
-    
-    
     let moviesComponents = movies.map(movie => {
     return <Movie key={movie.id} movie={movie} deleteMovie={deleteMovie}/>;
     
    })
     
-   
-
     return (
         <div className="row container-fluid">
             <form action ="#" onSubmit = {addMovie}>
