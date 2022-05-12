@@ -74,7 +74,7 @@ export default function MovieList() {
     
     return (
         <div className="row container-fluid">
-            <form action ="#"onSubmit = {addMovie}>
+            <form action ="#" onSubmit = {addMovie}>
             <label htmlFor="title">Titel:</label>
             <input id="title" className="form-control" ref={titleRef} />
             <div className="form-group">
